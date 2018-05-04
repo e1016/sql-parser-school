@@ -1,4 +1,6 @@
 
+var electron = require('electron').remote
+
 // + - - - - - - - - - - - - - - - - - - +
 // |   dev options, remove this later    |
 // + - - - - - - - - - - - - - - - - - - +
@@ -8,7 +10,6 @@ function c (m) { console.log(m) }
 // + - - - - - - - - - - - - - +
 // |   import resources here   |
 // + - - - - - - - - - - - - - +
-
 const Imports = {
 	javascript: [
 		'syntax'
@@ -65,22 +66,6 @@ function $find ( argument ) {
 	: _tmp_DOM[0];
 }
 
-function $bind ( el, ev, callback ) {
-	if (typeof el === 'object') {
-		el.forEach( e => e.addEventListener(
-			ev,
-			callback.bind(this)
-		));
-	} else if (typeof el === 'string') {
-		$find(el).forEach( e => e.addEventListener(
-			ev,
-			callback.bind(this)
-		));
-	} else {
-		console.error('ERROR BINDING: $bind expected String or html DOM Object');
-	}
-}
-
 // + - - - - - - - - - - - - - - - - - - +
 // |                                     |
 // |   Define main process module        |
@@ -89,6 +74,10 @@ function $bind ( el, ev, callback ) {
 // |   referenced as MainProcess.run()   |
 // |                                     |
 // + - - - - - - - - - - - - - - - - - - +
+
+var wait = setTimeout(function () {
+	vm.status = 0
+}, 10);
 
 const MainProcess = {
 	run () {
@@ -99,9 +88,12 @@ const MainProcess = {
 	//  starts of custom methods   |
 	// - - - - - - - - - - - - - - +
 	syncWithMirror (e) {
-    console.log(e);
-    e.preventDefault();
 		this.$mirror.innerHTML = Compile.parseSyntx(e.target.value);
+		vm.status = 1
+		clearTimeout(wait)
+		wait = setTimeout(function () {
+			vm.status = (e.target.value.indexOf(';') > -1) ? 0 : 2;
+		}, 1000);
 	},
 	syncScrollMirror (e) {
 		this.$mirror.scrollTop = e.target.scrollTop;

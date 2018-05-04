@@ -1,5 +1,6 @@
 .left-side {
   position: fixed;
+  user-select: none;
   left: 0;
   top: 0;
   height: 100vh;
@@ -33,4 +34,51 @@
 }
 #separator:hover {
   cursor: col-resize;
+}
+.right-side {
+  font-family: 'Roboto';
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: calc(100vh - 30px);
+  width: 350px;
+  background-color: #EFEFEF;
+}
+.status-bar {
+  font-family: 'Roboto';
+  position: fixed;
+  padding: 0 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  height: 30px;
+  background-color: white;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  user-select: none;
+}
+.status-bar > span {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.status-bar > span.green {
+  color: #4CAF50;
+}
+.status-bar > span.blue {
+  color: #607D8B;
+}
+.status-bar > span.red {
+  color: #FF6256;
+}
+.status-bar i {
+  font-size: 18px;
+  display: inline-flex;
+  margin: 0 10px;
 }

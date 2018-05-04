@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>EGG</title>
-    <script type="text/javascript" src="R/js/dicty.js"></script>
-    <script type="text/javascript" src="R/js/engine.js"></script>
+	<meta charset="UTF-8">
+	<title>EGG</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script type="text/javascript" src="R/js/vue.js"></script>
+	<script type="text/javascript" src="R/js/dicty.js"></script>
+	<script type="text/javascript" src="R/js/engine.js"></script>
 </head>
 <body style="opacity: 0; font-size: 17px; line-height: 1.4em;">
 
-<pre class="left-side">
-	<code id="mirror" class="left-side"></code>
-</pre>
+	<pre class="left-side"><code id="mirror" class="left-side"></code></pre>
+	<textarea id="input" class="left-side"></textarea>
 
-<textarea id="input" class="left-side"></textarea>
+	<div id="separator"></div>
 
-<div id="separator"></div>
+	<div id="right-side" class="right-side">
+		<div class="status-bar">
+
+			<span v-if="status === 0" class="green">
+				sin errores <i class="material-icons">done</i>
+			</span>
+
+			<span v-if="status === 1" class="blue">
+				revisando <i class="material-icons spining-anim">cached</i>
+			</span>
+
+			<span v-if="status === 2" class="red">
+				error <i class="material-icons">bug_report</i>
+			</span>
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="R/js/statusBar.js"></script>
 </body>
 </html>
 
 <script type="text/javascript">
 
-    Imports.beforeMouted( function () {
-        MainProcess.run()
-    })
+Imports.beforeMouted( function () {
+	MainProcess.run()
+})
 
 </script>

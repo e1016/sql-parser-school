@@ -17,6 +17,6 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/eliseogg/egg#readme",
   "dependencies": {
-    "electron": "^1.8.2"
+    "electron": "^1.8.6"
   }
 }

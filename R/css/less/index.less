@@ -2,43 +2,97 @@
 
 @dark: #212125;
 
+@LEFTSIDE_WIDTH: 350px;
+@VIEWPORT_H: 100vh;
+@VIEWPORT_W: 100vw;
+@M30: 30px;
+
 .left-side {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: calc(100vw ~"-" 350px);
-  padding-left: 20px;
-  padding-top: 20px;
-  font-family: 'Roboto Mono';
-  line-height: inherit;
-  white-space: pre-wrap;
-  font-size: inherit;
+	position: fixed;
+	user-select: none;
+	left: 0;
+	top: 0;
+	height: @VIEWPORT_H;
+	width: calc(@VIEWPORT_W ~"-" @LEFTSIDE_WIDTH);
+	padding-left: 20px;
+	padding-top: 20px;
+	font-family: 'Roboto Mono';
+	line-height: inherit;
+	white-space: pre-wrap;
+	font-size: inherit;
 }
 
 #mirror {
-  background-color: @dark;
-  color: lightgray;
-  overflow: scroll;
-  padding-bottom: 30px;
+	background-color: @dark;
+	color: lightgray;
+	overflow: scroll;
+	padding-bottom: 30px;
 }
 
 #input {
-  background-color: transparent;
-  color: fade(#FFF, 20%);
-  // transform: translate(-1px, -1px);
-  border: none;
+	background-color: transparent;
+	color: fade(#FFF, 20%);
+	// transform: translate(-1px, -1px);
+	border: none;
 }
 
 #separator {
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 4px;
-  background-color: transparent;
-  right: 500px;
-  transition: 0.3s ease 0.2s;
-  &:hover {
-    cursor: col-resize;
-  }
+	position: fixed;
+	top: 0;
+	height: @VIEWPORT_H;
+	width: 4px;
+	background-color: transparent;
+	right: 500px;
+	transition: 0.3s ease 0.2s;
+	&:hover {
+		cursor: col-resize;
+	}
+}
+
+.right-side {
+	font-family: 'Roboto';
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: calc(@VIEWPORT_H ~"-" @M30);
+	width: @LEFTSIDE_WIDTH;
+	background-color: #EFEFEF;
+}
+
+// - - - - -
+// BOTTOM BAR
+// - - - - -
+
+.status-bar {
+	font-family: 'Roboto';
+	position: fixed;
+	padding: 0 10px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	right: 0;
+	bottom: 0;
+	width: @LEFTSIDE_WIDTH;
+	height: @M30;
+	background-color: white;
+	box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-weight: bold;
+	user-select: none;
+	> span {
+		&.green { color: #4CAF50; }
+		&.blue { color: #607D8B; }
+		&.red { color: #FF6256; }
+
+		display: inline-flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+	i {
+		font-size: 18px;
+		display: inline-flex;
+		margin: 0 10px;
+	}
 }

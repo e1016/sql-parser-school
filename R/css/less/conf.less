@@ -4,12 +4,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-	&::selection {
-		background: fade(black, 50%);
-		color: white;
-	}
+	// &::selection {
+	// 	background: fade(black, 50%);
+	// 	color: white;
+	// }
 }
 
 a, textarea, input, button, select {
     outline: none;
+}
+
+@import "./iconfont/material-icons.css";
+
+.spining-anim { animation: 3s spining infinite linear; }
+
+@keyframes spining {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(-360deg); }
 }

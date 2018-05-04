@@ -22,7 +22,8 @@ const Compile = {
         val = val.replace(/(SUM\(|COUNT\()+/g, '<v>$2</v>')
         // val = val.replace(/(proceso +)([a-z|A-Z|_][a-z|A-Z|0-9|_]* ?)( *)( *\()/g, '$1<funcname>$2</funcname>$3$4')
         val = val.replace(/(proceso|repetirMientras|ciclo|sino|si|retornar) +/g, '<pur>$2</pur> ')
-        val = val.replace(/(\/\/.*\n?)/g, '<comment>$2</comment>')*/
+        val = val.replace(/(\/\/.*\n?)/g, '<comment>$2</comment>')
+        */
 
         return val;
     }
