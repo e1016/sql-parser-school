@@ -1,0 +1,22 @@
+{
+  "name": "egg",
+  "version": "0.0.1",
+  "description": "E ++ lang for pseudocode project",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://eliseogg@bitbucket.org/eliseogg/egg.git"
+  },
+  "keywords": [
+    "egg"
+  ],
+  "author": "e1016",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/eliseogg/egg#readme",
+  "dependencies": {
+    "electron": "^1.8.2"
+  }
+}

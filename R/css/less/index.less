@@ -1,0 +1,44 @@
+// out: ../index.css
+
+@dark: #212125;
+
+.left-side {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: calc(100vw ~"-" 350px);
+  padding-left: 20px;
+  padding-top: 20px;
+  font-family: 'Roboto Mono';
+  line-height: inherit;
+  white-space: pre-wrap;
+  font-size: inherit;
+}
+
+#mirror {
+  background-color: @dark;
+  color: lightgray;
+  overflow: scroll;
+  padding-bottom: 30px;
+}
+
+#input {
+  background-color: transparent;
+  color: fade(#FFF, 20%);
+  // transform: translate(-1px, -1px);
+  border: none;
+}
+
+#separator {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 4px;
+  background-color: transparent;
+  right: 500px;
+  transition: 0.3s ease 0.2s;
+  &:hover {
+    cursor: col-resize;
+  }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EGG</title>
+    <script type="text/javascript" src="R/js/dicty.js"></script>
+    <script type="text/javascript" src="R/js/engine.js"></script>
+</head>
+<body style="opacity: 0; font-size: 17px; line-height: 1.4em;">
+
+<pre class="left-side">
+	<code id="mirror" class="left-side"></code>
+</pre>
+
+<textarea id="input" class="left-side"></textarea>
+
+<div id="separator"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    Imports.beforeMouted( function () {
+        MainProcess.run()
+    })
+
+</script>

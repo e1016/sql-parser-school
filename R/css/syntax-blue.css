@@ -1,0 +1,31 @@
+v {
+  color: #2196F3;
+}
+str {
+  color: #FFF92C;
+}
+pur {
+  color: #698EE0;
+}
+trans {
+  opacity: 0.3;
+}
+funcname {
+  color: lightgreen;
+}
+errno {
+  color: lightgray;
+  border-bottom: 1px dashed red;
+}
+numb {
+  color: lightgreen;
+}
+comment {
+  color: yellow;
+  opacity: 0.4;
+}
+comment * {
+  color: yellow !important;
+  border-bottom: none !important;
+  opacity: 1;
+}

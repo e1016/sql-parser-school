@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::selection {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+a,
+textarea,
+input,
+button,
+select {
+  outline: none;
+}
