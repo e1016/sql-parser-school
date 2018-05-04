@@ -1,17 +1,17 @@
 {
   "name": "egg",
   "version": "0.0.1",
-  "description": "E ++ lang for pseudocode project",
+  "description": "SQL parser for schoolar project",
   "main": "app.js",
   "scripts": {
     "start": "electron app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://eliseogg@bitbucket.org/eliseogg/egg.git"
+    "url": "git+https://github.com/e1016/sql-parser-school.git"
   },
   "keywords": [
-    "egg"
+    "SQL parser"
   ],
   "author": "e1016",
   "license": "ISC",
