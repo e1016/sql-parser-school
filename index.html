@@ -10,7 +10,8 @@
 </head>
 <body style="opacity: 0; font-size: 17px; line-height: 1.4em;">
 
-	<pre class="left-side"><code id="mirror" class="left-side"></code></pre>
+<pre class="left-side"><code id="mirror" class="left-side"><ul><li>1</li></ul></code></pre>
+
 	<textarea id="input" class="left-side"></textarea>
 
 	<div id="separator"></div>
@@ -42,6 +43,30 @@
 
 Imports.beforeMouted( function () {
 	MainProcess.run()
+
+	function $ (domElement) {
+		this.e = document.querySelector(domElement);
+		return {
+			on: (eve, callback)  => {
+				this.e.addEventListener(eve, callback.bind(this))
+			}
+		}
+	}
+
+
+	var textareas = document.getElementsByTagName('textarea');
+	var count = textareas.length;
+	for (var i = 0; i < count; i++) {
+		textareas[i].onkeydown = function (e) {
+			if (e.keyCode == 9 || e.which == 9) {
+				e.preventDefault();
+				var s = this.selectionStart;
+				this.value = this.value.substring(0, this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+				this.selectionEnd = s + 1;
+			}
+		}
+	}
+
 })
 
 </script>

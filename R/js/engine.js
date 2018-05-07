@@ -87,9 +87,19 @@ const MainProcess = {
 	// - - - - - - - - - - - - - - +
 	//  starts of custom methods   |
 	// - - - - - - - - - - - - - - +
+	paintLines () {
+		this.lines = this.$mirror.textContent.split('\n')
+		let tmp = '<ul>'
+		for(i = 1; i <= this.lines.length; i++) {
+			tmp += `<li>${i}</li>`
+		} tmp += '</ul>'
+
+		this.$mirror.innerHTML = tmp + this.$mirror.innerHTML;
+	},
 	syncWithMirror (e) {
 		this.$mirror.innerHTML = Compile.parseSyntx(e.target.value);
 		vm.status = 1
+		this.paintLines()
 		clearTimeout(wait)
 		wait = setTimeout(function () {
 			vm.status = (e.target.value.indexOf(';') > -1) ? 0 : 2;

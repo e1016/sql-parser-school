@@ -14,8 +14,8 @@
 	top: 0;
 	height: @VIEWPORT_H;
 	width: calc(@VIEWPORT_W ~"-" @LEFTSIDE_WIDTH);
-	padding-left: 20px;
-	padding-top: 20px;
+	padding-left: 45px;
+	padding-top: 30px;
 	font-family: 'Roboto Mono';
 	line-height: inherit;
 	white-space: pre-wrap;
@@ -27,6 +27,24 @@
 	color: lightgray;
 	overflow: scroll;
 	padding-bottom: 30px;
+	ul {
+		font-family: 'Roboto Mono';
+		position: absolute;
+		left: 0;
+		top: 27px;
+		font-size: 13px;
+		list-style: none;
+		width: 35px;
+		opacity: 0.4;
+		line-height: 1.4em;
+		li {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 5px;
+		}
+	}
 }
 
 #input {
