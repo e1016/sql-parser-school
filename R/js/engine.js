@@ -102,7 +102,17 @@ const MainProcess = {
 		this.paintLines()
 		clearTimeout(wait)
 		wait = setTimeout(function () {
-			vm.status = (e.target.value.indexOf(';') > -1) ? 0 : 2;
+
+			tablaLexica = createGrammarTable(extractText());
+
+			if (!tablaLexica.error) {
+				if (checkSintax(tablaLexica)) {
+					vm.status = 0;
+				}
+			} else{
+				vm.status = 2;
+			}
+
 		}, 1000);
 	},
 	syncScrollMirror (e) {
