@@ -14,25 +14,32 @@
 
 <pre class="left-side"><code id="mirror" class="left-side"><ul><li>1</li></ul></code></pre>
 
-	<textarea id="input" class="left-side"></textarea>
-
-	<div id="separator"></div>
+<textarea id="input" class="left-side"></textarea>
+<div id="separator"></div>
 
 	<div id="right-side" class="right-side">
+    <table v-if="table.length" cellspacing="0">
+      <thead>
+        <tr>
+          <th v-for="th in getKeys(table[0])">{{ th }}</th>
+        <tr>
+      </thead>
+      <tbody>
+        <tr v-for="tr in table">
+          <td v-for="td in tr">{{ td }}</td>
+        </th>
+      </tbody>
+    </table>
 		<div class="status-bar">
-
 			<span v-if="status === 0" class="green">
 				sin errores <i class="material-icons">done</i>
 			</span>
-
 			<span v-if="status === 1" class="blue">
 				revisando <i class="material-icons spining-anim">cached</i>
 			</span>
-
 			<span v-if="status === 2" class="red">
 				error <i class="material-icons">bug_report</i>
 			</span>
-
 		</div>
 	</div>
 
@@ -63,7 +70,8 @@ Imports.beforeMouted( function () {
 			if (e.keyCode == 9 || e.which == 9) {
 				e.preventDefault();
 				var s = this.selectionStart;
-				this.value = this.value.substring(0, this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+				this.value = this.value.substring(0, this.selectionStart) + " " + this.value.substring(this.selectionEnd);
+				this.value = this.value.substring(0, this.selectionStart) + " " + this.value.substring(this.selectionEnd);
 				this.selectionEnd = s + 1;
 			}
 		}
@@ -72,3 +80,18 @@ Imports.beforeMouted( function () {
 })
 
 </script>
+
+<!--
+
+SELECT
+  city.ID,
+  city.Name,
+  city.District
+
+FROM
+  city INNER JOIN country
+ON
+  country.Code = city.CountryCode AND
+  city.ID < 51;
+
+-->

@@ -1,14 +1,7 @@
 
 //Variables
-var flask;
 var sintacticTable;
-var tablaLexica;
-var $tablaLexica_btn;
-var $tableContainer;
-var $runBtn;
-var error_codes;
 var DML;
-var DDL;
 
 //String prototype, para generar foreach
 String.prototype.forEach = function (call) {
@@ -190,7 +183,7 @@ DML = {
 			if(sintacticTable[x]){
 				return false;
 			}else{
-				return x.match( /^([A-Z])+([\w|\#])*(\.[A-Z])*([\w|\#])*$/gi);
+				return x.match(/^([A-Z])+([\w|\#])*(\.[A-Z])*([\w|\#])*$/gi);
 			}
 		},
 		'state': false,
@@ -219,12 +212,12 @@ DML = {
 		}
 	},
 	'tabla': {
-		'links': [',2', 'where', ')', ';'],
+		'links': [',2', 'inner', 'where', ')', ';'],
 		'match': function(x){
 			if(sintacticTable[x.toLowerCase()]){
 				return false;
 			}else{
-				return x.match( /^([A-Z])+([\w|\#|\d])*$/gi);
+				return x.match(/^([A-Z])+([\w|\#|\d])*$/gi);
 			}
 		},
 		'state': false,
@@ -232,6 +225,78 @@ DML = {
 			return [205, 201];
 		}
 	},
+
+
+
+
+  'inner': {
+    'links': ['join'],
+    'match': function(x){
+      if(sintacticTable[x.toLowerCase()]){
+        return false;
+      }else{
+        return x.match(/^(INNER|OUTER|LEFT|RIGHT|FULL OUTER)$/i);
+      }
+    },
+    'state': false,
+    'err': function(){
+      return [204, 206];
+    }
+  },
+  'join': {
+    'links': ['tab_on_join'],
+    'match': function(x){
+      if(sintacticTable[x.toLowerCase()]){
+        return false;
+      }else{
+        return x.match(/^(JOIN)$/i);
+      }
+    },
+    'state': false,
+    'err': function(){
+      return [204, 206];
+    }
+  },
+
+
+
+
+  'tab_on_join': {
+    'links': ['on'],
+    'match': function(x){
+      if(sintacticTable[x.toLowerCase()]){
+        return false;
+      }else{
+        return x.match(/^([A-Z])+([\w|\#|\d])*$/gi);
+      }
+    },
+    'state': false,
+    'err': function(){
+      return 204;
+    }
+  },
+
+  'on': {
+    'links': ['identi1'],
+    'match': function(x){
+      if(sintacticTable[x.toLowerCase()]){
+        return false;
+      }else{
+        return x.match(/^(ON)*$/gi);
+      }
+    },
+    'state': false,
+    'err': function(){
+      return 204;
+    }
+  },
+
+
+
+
+
+
+
 	',2': {
 		'links': ['tabla'],
 		'match': function(x){
@@ -363,7 +428,7 @@ DML = {
 	'and': {
 		'links':['identi1', 'num1', 'txt1'],
 		'match': function(x){
-			return x.match( /^(AND)$/i);
+			return x.match( /^(AND|OR)$/i);
 		},
 		'state':false,
 		'err': function(){
@@ -453,7 +518,7 @@ window.checkStatement = function(statement) {
 	}
 }
 
-window.stMatch = function(st, ar, ap, ctx){ //statement, arbol, apuntador, contexto
+window.stMatch = function (st, ar, ap, ctx) {
 	for(let j = 0; j<ar[ap].links.length; j++){
 		let s = ar[ap].links[j];
 		if(ar[s].match(st[0])){
